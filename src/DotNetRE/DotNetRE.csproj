@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.49.1" />
+    <PackageReference Include="Spectre.Console.Cli" Version="0.49.1" />
+    <PackageReference Include="dnlib" Version="3.6.0" />
+    <PackageReference Include="ICSharpCode.Decompiler" Version="8.2.0.7535" />
+    <PackageReference Include="Octokit" Version="13.0.0" />
+    <PackageReference Include="PeNet" Version="5.0.0" />
+    <PackageReference Include="Iced" Version="1.21.0" />
+    <PackageReference Include="ELFSharp" Version="2.1.4" />
+    <PackageReference Include="MachO.NET" Version="1.3.0" />
+    <PackageReference Include="SharpPdb" Version="1.3.1" />
+    <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="3.1.0" />
+    <PackageReference Include="Capstone.NET" Version="1.1.3" />
+    <PackageReference Include="SharpDisasm" Version="1.1.0" />
+    <PackageReference Include="Microsoft.DiaSymReader" Version="2.0.0" />
+    <PackageReference Include="Microsoft.DiaSymReader.PortablePdb" Version="2.0.0" />
+    <PackageReference Include="yaraNET" Version="1.1.1" />
+    <PackageReference Include="QuikGraph" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Msagl" Version="1.1.10" />
+  </ItemGroup>
+
+</Project>
