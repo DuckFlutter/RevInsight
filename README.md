@@ -1,9 +1,8 @@
 # DotNetRE
-<<<<<<< HEAD
-An open-source .NET reverse engineering tool.
+RevInsight is an open-source reverse engineering tool.
 =======
 
-DotNetRE is a professional, open-source .NET reverse engineering CLI that analyzes, deobfuscates, and unpacks managed assemblies with a rich terminal UX.
+RevInsight is a professional, open-source .NET (Also supports native and may other formats) reverse engineering CLI that analyzes, deobfuscates, and unpacks managed assemblies,
 
 ## Features
 
@@ -75,26 +74,6 @@ The executable will be in:
 
 ```
 src/DotNetRE/bin/Release/net10.0/<rid>/publish/
-```
-
-## GitHub Setup and Push
-
-Initialize a repository and push to GitHub:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/<owner>/<repo>.git
-git push -u origin main
-```
-
-If the repository already exists:
-
-```bash
-git remote add origin https://github.com/<owner>/<repo>.git
-git push -u origin main
 ```
 
 ## Usage
