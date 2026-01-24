@@ -1,6 +1,6 @@
 # DotNetRE
 <<<<<<< HEAD
-An open-source .NET reverse engineering tool.
+An open-source reverse engineering tool.
 =======
 
 DotNetRE is a professional, open-source .NET reverse engineering CLI that analyzes, deobfuscates, and unpacks managed assemblies with a rich terminal UX.
@@ -81,30 +81,6 @@ src/DotNetRE/bin/Release/net10.0/<rid>/publish/
 
 Initialize a repository and push to GitHub:
 
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/<owner>/<repo>.git
-git push -u origin main
-```
-
-If the repository already exists:
-
-```bash
-git remote add origin https://github.com/<owner>/<repo>.git
-git push -u origin main
-```
-
-## Usage
-
-```text
-dotnet-re analyze <ASSEMBLY> [--check-update]
-dotnet-re deobfuscate <ASSEMBLY> [--format cs|single|il] [--auto] [--output <DIR>] [--check-update]
-dotnet-re unpack <ASSEMBLY> [--auto] [--output <DIR>] [--check-update]
-dotnet-re update [--output <DIR>]
-```
 
 Example (native PE):
 
@@ -113,20 +89,10 @@ dotnet run --project src/DotNetRE -- analyze /workspaces/DotNetRE/Testing/Wave.e
 ```
 
 ### Output
-
-Each run emits output into a timestamped folder under `./output` by default:
-
-```
 output/20260118-173012/
 	assembly/
-	source/
-	unpack/
-```
 
 Use `--output <DIR>` to override the root folder. DotNetRE always creates a new timestamped subfolder per run.
-
-### Deobfuscation prompt
-
 When obfuscation is detected, DotNetRE prompts before applying deobfuscation. Use `--auto` to proceed automatically (defaults to analyze + deobfuscate).
 
 ## Legal
