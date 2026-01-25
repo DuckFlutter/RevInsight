@@ -1,118 +1,90 @@
-# DotNetRE
-RevInsight is an open-source reverse engineering tool.
-=======
+# RevInsight
 
-RevInsight is a professional, open-source .NET (Also supports native and may other formats) reverse engineering CLI that analyzes, deobfuscates, and unpacks managed assemblies,
+RevInsight is a professional, open-source reverse engineering CLI focused on analysis, deobfuscation, and unpacking of managed and native binaries.
 
 ## Features
 
-- Spectre.Console CLI with rich tables and status output
-- Assembly analysis with entropy and obfuscation heuristics (.NET + native PE)
-- Native PE analysis: headers, sections, imports/exports, resources, strings, disassembly stub
-- Native Windows executable compatibility (PE32/PE32+)
-- de4dot-inspired anti-anti-decompiler pass pipeline
-- Deobfuscation modules (strings, resources, constants, renaming)
-- Configurable source output formats (cs, single, il)
-- ConfuserEx-focused static unpacking
-- Anonymous GitHub release update checks
-- MIT licensed
+- Spectre.Console-based CLI with structured tables and status output
+- Managed (.NET) assembly analysis with entropy checks and obfuscation heuristics
+- Native PE analysis:
+  - Headers and sections
+  - Imports and exports
+  - Resources and strings
+  - Basic disassembly stubs
+- Native Windows executable support (PE32 / PE32+)
+- de4dot-inspired anti–anti-decompiler pass pipeline
+- Deobfuscation modules:
+  - String decryption
+  - Resource recovery
+  - Constant folding
+  - Symbol renaming
+- Configurable source output formats:
+  - cs (C# project)
+  - single (single-file output)
+  - il (IL only)
+- ConfuserEx-focused static unpacking support
 
-## Install
+## Installation
 
-Build from source (recommended):
+### Build from source (recommended)
 
-1. Install the .NET 10 SDK.
-2. Build and run:
-
-```bash
-dotnet build -c Release
-dotnet run --project src/DotNetRE -- analyze ./sample.exe
-```
-
-Single-file publish:
-
-```bash
-dotnet publish src/DotNetRE -c Release -r linux-x64 /p:PublishSingleFile=true
-```
-
-## Build and Publish
-
-### Build from source
+1. Install the .NET 10 SDK
+2. Build the project:
 
 ```bash
-dotnet restore
-dotnet build -c Release
+revinsight restore
+revinsight build -c Release
 ```
 
-### Run locally
-
-```bash
-dotnet run --project src/DotNetRE -- analyze /path/to/binary
-```
-
-### Publish single-file executables
-
-Windows x64:
-
-```bash
-dotnet publish src/DotNetRE -c Release -r win-x64 /p:PublishSingleFile=true /p:SelfContained=true
-```
-
+Publish single-file executable
 Linux x64:
-
 ```bash
-dotnet publish src/DotNetRE -c Release -r linux-x64 /p:PublishSingleFile=true /p:SelfContained=true
+revinsight publish src/RevInsight -c Release -r linux-x64 /p:PublishSingleFile=true /p:SelfContained=true
 ```
-
+Windows x64:
+```bash
+revinsight publish src/RevInsight -c Release -r win-x64 /p:PublishSingleFile=true /p:SelfContained=true
+```
 macOS x64:
-
 ```bash
-dotnet publish src/DotNetRE -c Release -r osx-x64 /p:PublishSingleFile=true /p:SelfContained=true
+revinsight publish src/RevInsight -c Release -r osx-x64 /p:PublishSingleFile=true /p:SelfContained=true
+```
+The resulting executable will be located at:
+```
+src/RevInsight/bin/Release/net10.0/<rid>/publish/
 ```
 
-The executable will be in:
-
+Rename the binary to ``revinsight`` (or ``revinsight.exe`` on Windows) and ensure it is available on your PATH.
+Usage
 ```
-src/DotNetRE/bin/Release/net10.0/<rid>/publish/
+revinsight analyze <ASSEMBLY> [--check-update]
+revinsight deobfuscate <ASSEMBLY> [--format cs|single|il] [--auto] [--output <DIR>] [--check-update]
+revinsight unpack <ASSEMBLY> [--auto] [--output <DIR>] [--check-update]
+revinsight update [--output <DIR>]
 ```
+## Examples
 
-## Usage
-
-```text
-dotnet-re analyze <ASSEMBLY> [--check-update]
-dotnet-re deobfuscate <ASSEMBLY> [--format cs|single|il] [--auto] [--output <DIR>] [--check-update]
-dotnet-re unpack <ASSEMBLY> [--auto] [--output <DIR>] [--check-update]
-dotnet-re update [--output <DIR>]
+Analyze a native PE file:
 ```
-
-Example (native PE):
-
-```bash
-dotnet run --project src/DotNetRE -- analyze /workspaces/DotNetRE/Testing/Wave.exe
+revinsight analyze ./Testing/Testing.exe
 ```
+Analyze and deobfuscate automatically:
+```
+revinsight deobfuscate ./sample.exe --auto
+```
+Output
 
-### Output
-
-Each run emits output into a timestamped folder under `./output` by default:
-
+Each execution creates a new timestamped directory under ``./output`` by default:
 ```
 output/20260118-173012/
-	assembly/
-	source/
-	unpack/
+  assembly/
+  source/
+  unpack/
 ```
+Use ``--output <DIR>`` to override the root output directory. RevInsight always creates a fresh timestamped subdirectory per run to avoid overwriting results.
 
-Use `--output <DIR>` to override the root folder. DotNetRE always creates a new timestamped subfolder per run.
 
-### Deobfuscation prompt
+## Legal (Refer to DISCLAIMER.md)
 
-When obfuscation is detected, DotNetRE prompts before applying deobfuscation. Use `--auto` to proceed automatically (defaults to analyze + deobfuscate).
-
-## Legal
-
-DotNetRE is intended for lawful reverse engineering, security research, and interoperability. You are responsible for complying with local laws and licenses. See DISCLAIMER.md for details.
-
-## License
-
-MIT. See LICENSE.
->>>>>>> a54efab (Initial commit)
+RevInsight is intended solely for lawful reverse engineering, security research, educational use, and interoperability testing.
+You are responsible for ensuring that your use of this tool complies with all applicable laws, regulations, and software licenses.
